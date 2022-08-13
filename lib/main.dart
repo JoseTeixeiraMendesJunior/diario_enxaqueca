@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      supportedLocales: const [Locale('pt', 'BR')],
+      // supportedLocales: const [Locale('pt', 'BR')],
       theme: ThemeData(
           primaryColor: GlobalInfo.primaryColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
