@@ -30,8 +30,7 @@ class _LoginViewState extends State<LoginView> {
             padding: EdgeInsets.only(top: 32, bottom: 16),
             child: TextField(),
           ),
-          Expanded(
-              child: Padding(
+          Padding(
             padding: const EdgeInsets.all(8),
             child: TextButton(
                 onPressed: () {},
@@ -39,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
                   'Cadastre-se',
                   style: TextStyle(color: GlobalInfo.infoColor),
                 )),
-          ))
+          )
         ],
       ),
     );
