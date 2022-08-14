@@ -1,5 +1,6 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
+import 'package:diario_enxaqueca/views/calendar/index.dart';
 import 'package:diario_enxaqueca/views/login/index.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         // this line below is always the last line
-        '/': (_) => const LoginView(),
+        '/': (_) => const CalendarView(),
       },
     );
   }
