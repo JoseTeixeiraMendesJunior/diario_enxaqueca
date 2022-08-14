@@ -38,10 +38,10 @@ class _MyAppState extends State<MyApp> {
                   minimumSize: const Size(152, 56),
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                  primary: GlobalInfo.blue,
+                  primary: GlobalInfo.contrastColor,
                   textStyle: const TextStyle(fontSize: 16))),
           inputDecorationTheme: InputDecorationTheme(
-            hintStyle: const TextStyle(color: GlobalInfo.primaryColor),
+            hintStyle: const TextStyle(color: GlobalInfo.grey),
             floatingLabelStyle: const TextStyle(
                 color: GlobalInfo.primaryColor, fontWeight: FontWeight.bold),
             alignLabelWithHint: true,

@@ -7,8 +7,10 @@ class GlobalInfo {
   ///Cores globais
   ///
   // cores do design
-  static const Color primaryColor = Color.fromRGBO(204, 74, 67, 0.8);
-  static const Color secondaryColor = Color.fromRGBO(213, 138, 134, 0.83);
+  static const Color primaryColor = Color.fromRGBO(247, 204, 172, 1);
+  static const Color secondaryColor = Color.fromRGBO(198, 155, 123, 1);
+  static const Color tertiaryColor = Color.fromRGBO(130, 111, 102, 1);
+  static const Color contrastColor = Color.fromRGBO(58, 56, 69, 1);
 
   ///
   //cores de aviso
