@@ -26,80 +26,84 @@ class _HomeViewState extends State<HomeView> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 24, top: 32),
-            child: Container(
-              height: 120,
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 5,
-                    offset: Offset(0, 5),
-                    color: Colors.grey,
-                  ),
-                ],
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  bottomLeft: Radius.circular(15),
-                ),
-                color: GlobalInfo.tertiaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
+            child: GestureDetector(
+              onHorizontalDragEnd: (details) => print('test'),
+              child: Container(
+                height: 120,
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 5,
+                      offset: Offset(0, 5),
+                      color: Colors.grey,
                     ),
-                    color: Colors.white,
+                  ],
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    bottomLeft: Radius.circular(15),
                   ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Icon(
-                          Icons.drag_indicator_rounded,
-                          color: Colors.grey.withOpacity(0.5),
-                        ),
+                  color: GlobalInfo.tertiaryColor,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 8),
-                        child: Container(
-                          height: 75,
-                          width: 56,
-                          decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image:
-                                      AssetImage('assets/images/avatar.png'))),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Icon(
+                            Icons.drag_indicator_rounded,
+                            color: Colors.grey.withOpacity(0.5),
+                          ),
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Nome do Usuário',
-                              style: TextStyle(
-                                  color: GlobalInfo.contrastColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 8),
+                          child: Container(
+                            height: 75,
+                            width: 56,
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(
+                                        'assets/images/avatar.png'))),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'arreste para mais informações',
-                              style: TextStyle(color: GlobalInfo.contrastColor),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Nome do Usuário',
+                                style: TextStyle(
+                                    color: GlobalInfo.contrastColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'arreste para mais informações',
+                                style:
+                                    TextStyle(color: GlobalInfo.contrastColor),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
