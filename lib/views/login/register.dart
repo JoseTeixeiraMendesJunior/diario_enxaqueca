@@ -13,14 +13,28 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: const [
-          BackgraoundImage(),
-          GlassEfect(bodyWidget: BodyRegisterWidget())
-        ],
+    return Container(
+      color: GlobalInfo.contrastColor,
+      child: SafeArea(
+        child: Scaffold(
+          body: SingleChildScrollView(
+            controller: _scrollController,
+            physics: const ClampingScrollPhysics(),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 1,
+              child: Stack(
+                children: const [
+                  BackgraoundImage(),
+                  GlassEfect(bodyWidget: BodyRegisterWidget())
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
