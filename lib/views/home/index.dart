@@ -18,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalInfo.grey,
+      backgroundColor: Colors.white.withOpacity(0.9),
       body: ListView(
         children: [
           const LogoWidget(
@@ -27,9 +27,14 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: const EdgeInsets.only(left: 24, top: 32),
             child: Container(
+              height: 120,
               decoration: const BoxDecoration(
                 boxShadow: [
-                  BoxShadow(blurRadius: 3),
+                  BoxShadow(
+                    blurRadius: 5,
+                    offset: Offset(0, 5),
+                    color: Colors.grey,
+                  ),
                 ],
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15),
@@ -50,18 +55,29 @@ class _HomeViewState extends State<HomeView> {
                   child: Row(
                     children: [
                       Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Icon(
+                          Icons.drag_indicator_rounded,
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 16),
+                            vertical: 8.0, horizontal: 8),
                         child: Container(
                           height: 75,
-                          width: 60,
+                          width: 56,
                           decoration: const BoxDecoration(
-                              // image: DecorationImage()
-                              color: Colors.red),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      AssetImage('assets/images/avatar.png'))),
                         ),
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Padding(
@@ -71,23 +87,16 @@ class _HomeViewState extends State<HomeView> {
                               style: TextStyle(
                                   color: GlobalInfo.contrastColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 24),
+                                  fontSize: 16),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
-                              'mais informações',
+                              'arreste para mais informações',
                               style: TextStyle(color: GlobalInfo.contrastColor),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'mais informações',
-                              style: TextStyle(color: GlobalInfo.contrastColor),
-                            ),
-                          )
                         ],
                       )
                     ],
