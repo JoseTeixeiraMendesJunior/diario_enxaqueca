@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       // supportedLocales: const [Locale('pt', 'BR')],
       theme: ThemeData(
+          fontFamily: 'RobotoCondensed',
           primaryColor: GlobalInfo.primaryColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: const AppBarTheme(
