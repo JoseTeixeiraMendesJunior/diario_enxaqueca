@@ -7,10 +7,10 @@ class GlobalInfo {
   ///Cores globais
   ///
   // cores do design
-  static const Color primaryColor = Color.fromRGBO(247, 204, 172, 1);
-  static const Color secondaryColor = Color.fromRGBO(198, 155, 123, 1);
-  static const Color tertiaryColor = Color.fromRGBO(130, 111, 102, 1);
-  static const Color contrastColor = Color.fromRGBO(58, 56, 69, 1);
+  static const Color primaryColor = Color.fromRGBO(0, 150, 136, 1);
+  static const Color secondaryColor = Color.fromRGBO(50, 168, 156, 1);
+  static const Color tertiaryColor = Color.fromRGBO(110, 183, 175, 1);
+  static const Color contrastColor = Color.fromRGBO(0, 99, 90, 1);
 
   ///
   //cores de aviso
@@ -33,4 +33,5 @@ class GlobalInfo {
   static const Color instagram = Color.fromRGBO(166, 55, 149, 1);
   static const Color cement = Color.fromRGBO(95, 98, 98, 1);
   static const Color darkGrey = Color.fromRGBO(38, 39, 39, 1);
+  static const Color link = Color.fromRGBO(138, 180, 248, 1);
 }
