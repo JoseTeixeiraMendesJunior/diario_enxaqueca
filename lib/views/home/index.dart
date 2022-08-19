@@ -27,6 +27,7 @@ class _HomeViewState extends State<HomeView> {
             children: const [
               BoxOne(),
               BoxTwo(),
+              SizedBox(height: 20),
               BoxThree(),
               SizedBox(height: 30)
             ],
@@ -169,33 +170,19 @@ class _BoxTwoState extends State<BoxTwo> {
       child: IntrinsicHeight(
         child: Column(
           children: [
-            Container(
-              height: 250,
-              color: Colors.amber,
-            ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => print('alterar data'),
+                onTap: () => print('abre calendário'),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Registrar Atividades do Dia',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: GlobalInfo.contrastColor,
-                          ),
-                        ),
-                      ),
-                    ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         '28 / OUT',
                         style: TextStyle(
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: GlobalInfo.contrastColor,
                         ),
@@ -203,17 +190,87 @@ class _BoxTwoState extends State<BoxTwo> {
                     ),
                     Icon(
                       Icons.edit_calendar_rounded,
-                      size: 18,
+                      size: 20,
                       color: GlobalInfo.grey,
                     )
                   ],
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Regsitrar Crise de Enxaqueca',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Card(
+                          color: Colors.yellow[900],
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Regsitrar Humor do Dia',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                'Registrar Atividades do Dia',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: GlobalInfo.contrastColor,
+                ),
+              ),
+            ),
             Visibility(
               visible: _visibleList,
               child: SizedBox(
-                height: 5 * 90,
+                height: 4 * 90,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Column(
@@ -221,11 +278,6 @@ class _BoxTwoState extends State<BoxTwo> {
                     // shrinkWrap: true,
                     // physics: const ClampingScrollPhysics(),
                     children: const [
-                      ActionsWidget(
-                        name: 'Registrar Crise',
-                        activities: ['horario', 'instensidade'],
-                        icon: Icons.book_online_rounded,
-                      ),
                       ActionsWidget(
                         name: 'Registrar Alimentação',
                         activities: ['horario', 'alimentos'],
@@ -384,13 +436,11 @@ class BoxThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: 150,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: const [MoreElements(), MoreElements(), MoreElements()],
-        ),
+    return SizedBox(
+      height: 150,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: const [MoreElements(), MoreElements(), MoreElements()],
       ),
     );
   }
