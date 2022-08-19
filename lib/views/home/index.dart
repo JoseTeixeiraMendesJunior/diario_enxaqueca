@@ -24,7 +24,12 @@ class _HomeViewState extends State<HomeView> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: ListView(
-            children: const [BoxOne(), BoxTwo()],
+            children: const [
+              BoxOne(),
+              BoxTwo(),
+              BoxThree(),
+              SizedBox(height: 30)
+            ],
           ),
         ),
       ),
@@ -164,6 +169,10 @@ class _BoxTwoState extends State<BoxTwo> {
       child: IntrinsicHeight(
         child: Column(
           children: [
+            Container(
+              height: 250,
+              color: Colors.amber,
+            ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: GestureDetector(
@@ -363,6 +372,43 @@ class ActionsWidget extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BoxThree extends StatelessWidget {
+  const BoxThree({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: 150,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: const [MoreElements(), MoreElements(), MoreElements()],
+        ),
+      ),
+    );
+  }
+}
+
+class MoreElements extends StatelessWidget {
+  const MoreElements({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 150,
+        width: MediaQuery.of(context).size.width - 100,
+        color: Colors.white,
       ),
     );
   }
