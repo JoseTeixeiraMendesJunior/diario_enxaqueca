@@ -1,7 +1,7 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/calendar/index.dart';
-import 'package:diario_enxaqueca/views/login/index.dart';
+import 'package:diario_enxaqueca/views/home/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [Locale('pt', 'BR')],
       theme: ThemeData(
+          fontFamily: 'RobotoCondensed',
           primaryColor: GlobalInfo.primaryColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: const AppBarTheme(
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
                 color: GlobalInfo.primaryColor, fontWeight: FontWeight.bold),
             alignLabelWithHint: true,
             labelStyle: const TextStyle(
-                color: GlobalInfo.primaryColor, fontWeight: FontWeight.normal),
+                color: GlobalInfo.grey, fontWeight: FontWeight.normal),
             filled: true,
             fillColor: Colors.white,
             disabledBorder: OutlineInputBorder(
@@ -93,6 +94,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: GlobalScaffold.instance.navigatorKey,
       initialRoute: '/',
       routes: {
+        'Home': (_) => const HomeView(),
         // this line below is always the last line
         '/': (_) => const CalendarView(),
       },
