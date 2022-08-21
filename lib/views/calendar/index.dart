@@ -15,83 +15,85 @@ class CalendarView extends StatefulWidget {
 }
 
 class _CalendarViewState extends State<CalendarView> {
+  DateTime? _selectedDay;
+  DateTime? _focusedDay = DateTime.now();
+  final CalendarFormat _calendarFormat = CalendarFormat.month;
+  List<Text> eventList = [];
+  List<Text> eventList2 = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {}, child: Icon(Icons.calendar_month)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //     onPressed: () {}, child: Icon(Icons.calendar_month)),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: GlobalInfo.primaryColor,
       appBar: AppBar(
         backgroundColor: GlobalInfo.contrastColor,
         centerTitle: true,
         title: SizedBox(
             child: RichText(
-          text: TextSpan(children: [
-            TextSpan(
-                text: '${DateFormat.MMMM('pt_BR').format(DateTime.now())} '),
-            TextSpan(text: DateFormat.y('pt_BR').format(DateTime.now()))
-          ]),
+          text: const TextSpan(children: [TextSpan(text: 'Calendário')]),
         )),
       ),
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        backgroundColor: GlobalInfo.contrastColor,
-        gapLocation: GapLocation.center,
-        inactiveColor: Colors.white,
-        icons: const <IconData>[Icons.house_outlined, Icons.stacked_bar_chart],
-        activeIndex: 1,
-        onTap: (p0) => print('oi'),
-      ),
-      // bottomNavigationBar: BottomAppBar(
-      //     color: Colors.black,
-      //     notchMargin: 5,
-      //     shape: CircularNotchedRectangle(),
-      //     child: Row(
-      //       mainAxisSize: MainAxisSize.max,
-      //       children: [
-      //         IconButton(
-      //           icon: Icon(Icons.calendar_month),
-      //           onPressed: () {},
-      //         )
-      //       ],
-      //     )
-      // BottomNavigationBar(
-      //     type: BottomNavigationBarType.fixed,
-      //     currentIndex: 1,
-      //     selectedIconTheme: IconThemeData(size: 50),
-      //     unselectedItemColor: Colors.white,
-      //     backgroundColor: GlobalInfo.contrastColor,
-      //     items: const [
-      //       BottomNavigationBarItem(
-      //           icon: Icon(Icons.house_outlined),
-      //           label: '',
-      //           backgroundColor: Colors.white),
-      //       BottomNavigationBarItem(
-      //           icon: Icon(Icons.calendar_month),
-      //           label: '',
-      //           backgroundColor: Colors.white),
-      //       BottomNavigationBarItem(
-      //           icon: Icon(Icons.stacked_bar_chart), label: '')
-      //     ]),
-      // ),
-      body: Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        color: GlobalInfo.primaryColor,
-        child: TableCalendar(
-            // onDaySelected: (selectedDay, focusedDay) => ,
-            //   // eventLoader: (day) {
-            //   //   // return [Text('evento')];
-            // },
-            shouldFillViewport: true,
-            // rowHeight: MediaQuery.of(context).size.height / 10,
-            locale: 'pt_BR',
-            calendarStyle:
-                const CalendarStyle(defaultDecoration: BoxDecoration()),
-            firstDay: DateTime(DateTime.now().year - 1, DateTime.now().month,
-                DateTime.now().day),
-            focusedDay: DateTime.now(),
-            lastDay: DateTime(DateTime.now().year + 1, DateTime.now().month,
-                DateTime.now().day)),
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            color: GlobalInfo.whiteIce,
+            child: TableCalendar(
+                pageJumpingEnabled: false,
+                headerStyle: const HeaderStyle(
+                    titleCentered: true, titleTextStyle: TextStyle()),
+                availableCalendarFormats: const {
+                  CalendarFormat.month: 'Month',
+                },
+                shouldFillViewport: true,
+                // rowHeight: MediaQuery.of(context).size.height / 10,
+                eventLoader: (day) {
+                  if (day.day == DateTime.now().day) {
+                    eventList.add(Text('oi'));
+                    eventList.add(Text('oi'));
+                    eventList.add(Text('oi'));
+                    eventList.add(Text('oi'));
+                    return eventList;
+                  }
+                  return eventList2;
+                },
+                selectedDayPredicate: (day) {
+                  return isSameDay(_selectedDay, day);
+                },
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = _selectedDay;
+                  });
+                },
+                calendarFormat: _calendarFormat,
+                // onFormatChanged: (format) {
+                //   setState(() {
+                //     _calendarFormat = format;
+                //   });
+                // },
+                locale: 'pt_BR',
+                calendarStyle: const CalendarStyle(
+                  outsideDaysVisible: false,
+                  weekendTextStyle: TextStyle(color: Colors.red),
+                  defaultTextStyle: TextStyle(color: GlobalInfo.contrastColor),
+                ),
+                firstDay: DateTime(DateTime.now().year - 1,
+                    DateTime.now().month, DateTime.now().day),
+                focusedDay: _focusedDay!,
+                lastDay: DateTime(DateTime.now().year + 1, DateTime.now().month,
+                    DateTime.now().day)),
+          ),
+          Expanded(
+            child: ListView(
+              physics: const ScrollPhysics(),
+              shrinkWrap: false,
+              children: eventList,
+            ),
+          )
+        ],
       ),
     );
   }

@@ -97,6 +97,7 @@ class _MyAppState extends State<MyApp> {
         'Home': (_) => const HomeView(),
         // this line below is always the last line
         '/': (_) => const CalendarView(),
+        // '/': (_) => const HomeView(),
       },
     );
   }
