@@ -68,13 +68,7 @@ class _ExaquecaFormViewState extends State<ExaquecaFormView> {
                           if (_selectedTime != null) {
                             setState(() {
                               timeController.text =
-                                  '${_selectedTime!.hour}:${_selectedTime!.minute} ';
-
-                              print(timeController.text);
-                            });
-                          } else {
-                            setState(() {
-                              timeController = TextEditingController();
+                                  '${_selectedTime!.hour}:${_selectedTime!.minute}';
                             });
                           }
                         },
