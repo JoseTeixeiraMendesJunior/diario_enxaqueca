@@ -1,6 +1,6 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/layouts/globalwidget.dart';
-import 'package:diario_enxaqueca/views/home/activities.dart';
+import 'package:diario_enxaqueca/views/forms/activities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -57,7 +57,7 @@ class BoxOne extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 24, top: 32),
               child: GestureDetector(
-                onHorizontalDragEnd: (details) => print('test'),
+                onHorizontalDragEnd: (details) => print(details),
                 child: Container(
                   height: 120,
                   decoration: const BoxDecoration(
@@ -175,7 +175,7 @@ class _BoxTwoState extends State<BoxTwo> {
               child: GestureDetector(
                 onTap: () => print('abre calendário'),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Padding(
                       padding: EdgeInsets.all(8.0),
@@ -438,9 +438,12 @@ class BoxThree extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 150,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: const [MoreElements(), MoreElements(), MoreElements()],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: const [MoreElements(), MoreElements(), MoreElements()],
+        ),
       ),
     );
   }
@@ -458,7 +461,8 @@ class MoreElements extends StatelessWidget {
       child: Container(
         height: 150,
         width: MediaQuery.of(context).size.width - 100,
-        color: Colors.white,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
