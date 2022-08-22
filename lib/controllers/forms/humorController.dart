@@ -22,23 +22,25 @@ class HumorController extends GetxController {
       HumorModel('assets/images/morto.png', 'Cansado'),
       HumorModel('assets/images/adormecido.png', 'Sonolento'),
       HumorModel('assets/images/triste.png', 'Triste'),
+      HumorModel('assets/images/bravo.png', 'Estressado'),
     ];
 
     humorList.value = response;
   }
 
-  // RxString nome = 'nome'.obs;
+  void setHumor(index) {
+    List<HumorModel> temp = [];
 
-  // void changeName(id) {
-  //   nome = 'trocou'.obs;
-  // }
-
-  void setHumor(id) {
-    print('in function');
-    for (var element in humorList) {
-      element.status = false;
+    for (int i = 0; i < humorList.length; i++) {
+      humorList[i].status = false;
+      if (i == index) {
+        humorList[i].status = true;
+      }
+      temp.add(humorList[i]);
     }
 
-    humorList[id].status = true;
+    humorList.value = temp;
+
+    update();
   }
 }

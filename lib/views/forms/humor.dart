@@ -1,5 +1,6 @@
 import 'package:diario_enxaqueca/controllers/forms/humorController.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
+import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -31,7 +32,7 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView(
-                physics: const NeverScrollableScrollPhysics(),
+                // physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -48,22 +49,22 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                     child: Divider(),
                   ),
                   SizedBox(
-                    height: double.maxFinite,
-                    child: GetX<HumorController>(
-                      init: HumorController(),
-                      builder: (controller) => ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: controller.humorList.length,
+                    height: humorController.humorList.length * 92,
+                    child: Obx(
+                      () => ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: humorController.humorList.length,
                         itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: () => controller.setHumor(index),
+                            onTap: () => humorController.setHumor(index),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 2),
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: controller.humorList[index].status ==
+                                    color: humorController
+                                                .humorList[index].status ==
                                             false
                                         ? GlobalInfo.tertiaryColor
                                         : GlobalInfo.contrastColor,
@@ -79,15 +80,16 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                                       width: 50,
                                       height: 50,
                                       decoration: BoxDecoration(
-                                        // color: Colors.red,
                                         image: DecorationImage(
                                           image: AssetImage(
-                                            controller.humorList[index].image!,
+                                            humorController
+                                                .humorList[index].image!,
                                           ),
                                           fit: BoxFit.contain,
                                           colorFilter: ColorFilter.mode(
                                               Colors.white.withOpacity(
-                                                  controller.humorList[index]
+                                                  humorController
+                                                              .humorList[index]
                                                               .status ==
                                                           false
                                                       ? 0.6
@@ -96,26 +98,24 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Text(
-                                            humorController
-                                                .humorList[index].name!,
-                                            style: TextStyle(
-                                                color: humorController
-                                                            .humorList[index]
-                                                            .status ==
-                                                        false
-                                                    ? Colors.grey
-                                                    : GlobalInfo.contrastColor,
-                                                fontWeight: humorController
-                                                            .humorList[index]
-                                                            .status ==
-                                                        false
-                                                    ? FontWeight.normal
-                                                    : FontWeight.bold)),
-                                      ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Text(
+                                          humorController
+                                              .humorList[index].name!,
+                                          style: TextStyle(
+                                              color: humorController
+                                                          .humorList[index]
+                                                          .status ==
+                                                      false
+                                                  ? Colors.grey
+                                                  : GlobalInfo.contrastColor,
+                                              fontWeight: humorController
+                                                          .humorList[index]
+                                                          .status ==
+                                                      false
+                                                  ? FontWeight.normal
+                                                  : FontWeight.bold)),
                                     )
                                   ],
                                 ),
@@ -126,48 +126,20 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                       ),
                     ),
                   ),
-                  // Column(
-                  //   children: [
-                  //     Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Container(
-                  //         padding:
-                  //             EdgeInsets.symmetric(vertical: 5, horizontal: 2),
-                  //         decoration: BoxDecoration(
-                  //             border: Border.all(
-                  //               color: GlobalInfo.tertiaryColor,
-                  //               width: 3,
-                  //             ),
-                  //             borderRadius: BorderRadius.circular(10)),
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.all(4),
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.start,
-                  //             children: [
-                  //               Container(
-                  //                 width: 50,
-                  //                 height: 50,
-                  //                 decoration: BoxDecoration(
-                  //                     image: DecorationImage(
-                  //                         image: AssetImage(
-                  //                             image),
-                  //                         fit: BoxFit.cover)),
-                  //               ),
-                  //               Expanded(
-                  //                 child: Padding(
-                  //                   padding: const EdgeInsets.all(8),
-                  //                   child: Text(text,
-                  //                       style: TextStyle(
-                  //                           color: GlobalInfo.contrastColor)),
-                  //                 ),
-                  //               )
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // )
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Divider(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          GlobalScaffold.instance.snackBarStatus(
+                              'Humor registrado!', GlobalInfo.successColor);
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Salvar')),
+                  )
                 ],
               ),
             ),

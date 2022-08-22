@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class HumorModel {
   HumorModel(this.image, this.name);
 
