@@ -90,7 +90,7 @@ class _CalendarViewState extends State<CalendarView> {
             child: ListView(
               physics: const ScrollPhysics(),
               shrinkWrap: false,
-              children: eventList,
+              // children: getEventos(),
             ),
           )
         ],
