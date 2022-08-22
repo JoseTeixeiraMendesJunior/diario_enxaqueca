@@ -28,7 +28,7 @@ class HumorController extends GetxController {
     humorList.value = response;
   }
 
-  void setHumor(index) {
+  void setHumor({index}) {
     List<HumorModel> temp = [];
 
     for (int i = 0; i < humorList.length; i++) {

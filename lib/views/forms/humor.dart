@@ -18,6 +18,12 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
   final humorController = Get.put(HumorController());
 
   @override
+  void initState() {
+    super.initState();
+    humorController.setHumor();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalInfo.primaryColor,
@@ -57,7 +63,7 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                         itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: () => humorController.setHumor(index),
+                            onTap: () => humorController.setHumor(index: index),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 2),
