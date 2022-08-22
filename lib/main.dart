@@ -1,8 +1,10 @@
+import 'package:diario_enxaqueca/controllers/forms/humorController.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/home/index.dart';
 import 'package:diario_enxaqueca/views/login/index.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +19,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  /// Create the instance of Controller
+  HumorController humorController = Get.put(HumorController());
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

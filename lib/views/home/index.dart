@@ -1,6 +1,8 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/layouts/globalwidget.dart';
-import 'package:diario_enxaqueca/views/home/activities.dart';
+import 'package:diario_enxaqueca/views/forms/activities.dart';
+import 'package:diario_enxaqueca/views/forms/exaqueca.dart';
+import 'package:diario_enxaqueca/views/forms/humor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -24,7 +26,13 @@ class _HomeViewState extends State<HomeView> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: ListView(
-            children: const [BoxOne(), BoxTwo()],
+            children: const [
+              BoxOne(),
+              BoxTwo(),
+              SizedBox(height: 20),
+              BoxThree(),
+              SizedBox(height: 30)
+            ],
           ),
         ),
       ),
@@ -51,7 +59,7 @@ class BoxOne extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 24, top: 32),
               child: GestureDetector(
-                onHorizontalDragEnd: (details) => print('test'),
+                onHorizontalDragEnd: (details) => print(details),
                 child: Container(
                   height: 120,
                   decoration: const BoxDecoration(
@@ -167,26 +175,16 @@ class _BoxTwoState extends State<BoxTwo> {
             Padding(
               padding: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => print('alterar data'),
+                onTap: () => print('abre calendário'),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Registrar Atividades do Dia',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: GlobalInfo.contrastColor,
-                          ),
-                        ),
-                      ),
-                    ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         '28 / OUT',
                         style: TextStyle(
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: GlobalInfo.contrastColor,
                         ),
@@ -194,17 +192,103 @@ class _BoxTwoState extends State<BoxTwo> {
                     ),
                     Icon(
                       Icons.edit_calendar_rounded,
-                      size: 18,
+                      size: 20,
                       color: GlobalInfo.grey,
                     )
                   ],
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ExaquecaFormView(),
+                            ),
+                          ),
+                          child: Card(
+                            color: Colors.red,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Regsitrar Crise de Enxaqueca',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.add_circle_outline_rounded,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HumorFormWidget(),
+                            ),
+                          ),
+                          child: Card(
+                            color: Colors.yellow[900],
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Regsitrar Humor do Dia',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.add_circle_outline_rounded,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                'Registrar Atividades do Dia',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: GlobalInfo.contrastColor,
+                ),
+              ),
+            ),
             Visibility(
               visible: _visibleList,
               child: SizedBox(
-                height: 5 * 90,
+                height: 4 * 90,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Column(
@@ -212,11 +296,6 @@ class _BoxTwoState extends State<BoxTwo> {
                     // shrinkWrap: true,
                     // physics: const ClampingScrollPhysics(),
                     children: const [
-                      ActionsWidget(
-                        name: 'Registrar Crise',
-                        activities: ['horario', 'instensidade'],
-                        icon: Icons.book_online_rounded,
-                      ),
                       ActionsWidget(
                         name: 'Registrar Alimentação',
                         activities: ['horario', 'alimentos'],
@@ -363,6 +442,45 @@ class ActionsWidget extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BoxThree extends StatelessWidget {
+  const BoxThree({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 150,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: const [MoreElements(), MoreElements(), MoreElements()],
+        ),
+      ),
+    );
+  }
+}
+
+class MoreElements extends StatelessWidget {
+  const MoreElements({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 150,
+        width: MediaQuery.of(context).size.width - 100,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
