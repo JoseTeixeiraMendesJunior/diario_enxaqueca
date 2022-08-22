@@ -2,6 +2,7 @@ import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/layouts/globalwidget.dart';
 import 'package:diario_enxaqueca/views/forms/activities.dart';
 import 'package:diario_enxaqueca/views/forms/exaqueca.dart';
+import 'package:diario_enxaqueca/views/forms/humor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -237,26 +238,34 @@ class _BoxTwoState extends State<BoxTwo> {
                             ),
                           ),
                         ),
-                        Card(
-                          color: Colors.yellow[900],
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Regsitrar Humor do Dia',
-                                  style: TextStyle(color: Colors.white),
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HumorFormWidget(),
+                            ),
+                          ),
+                          child: Card(
+                            color: Colors.yellow[900],
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Regsitrar Humor do Dia',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.add_circle_outline_rounded,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.add_circle_outline_rounded,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         )
                       ],
