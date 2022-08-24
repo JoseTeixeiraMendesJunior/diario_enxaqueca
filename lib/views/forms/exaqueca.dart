@@ -48,6 +48,17 @@ class _ExaquecaFormViewState extends State<ExaquecaFormView> {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: [
+                  const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Dia: xx/xx',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: GlobalInfo.contrastColor),
+                    ),
+                  ),
+
                   /// horário inicio
                   Padding(
                       padding: const EdgeInsets.all(8),
