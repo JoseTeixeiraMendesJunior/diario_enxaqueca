@@ -121,7 +121,7 @@ class BoxOne extends StatelessWidget {
                                   style: TextStyle(
                                       color: GlobalInfo.contrastColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16),
+                                      fontSize: 19),
                                 ),
                               ),
                               Padding(
@@ -129,6 +129,7 @@ class BoxOne extends StatelessWidget {
                                 child: Text(
                                   'arreste para mais informações',
                                   style: TextStyle(
+                                      fontSize: 15,
                                       color: GlobalInfo.contrastColor),
                                 ),
                               ),
@@ -184,7 +185,7 @@ class _BoxTwoState extends State<BoxTwo> {
                       child: Text(
                         '28 / OUT',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: GlobalInfo.contrastColor,
                         ),
@@ -221,10 +222,14 @@ class _BoxTwoState extends State<BoxTwo> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
                                 Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 15),
                                   child: Text(
                                     'Regsitrar Crise de Enxaqueca',
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
@@ -251,10 +256,16 @@ class _BoxTwoState extends State<BoxTwo> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
                                 Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 15,
+                                  ),
                                   child: Text(
                                     'Regsitrar Humor do Dia',
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
@@ -280,6 +291,7 @@ class _BoxTwoState extends State<BoxTwo> {
                 'Registrar Atividades do Dia',
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontSize: 19,
                   fontWeight: FontWeight.bold,
                   color: GlobalInfo.contrastColor,
                 ),
@@ -298,22 +310,22 @@ class _BoxTwoState extends State<BoxTwo> {
                     children: const [
                       ActionsWidget(
                         name: 'Registrar Alimentação',
-                        activities: ['horario', 'alimentos'],
+                        activities: 'alimentos',
                         icon: Icons.restaurant_rounded,
                       ),
                       ActionsWidget(
                         name: 'Registrar Atividades',
-                        activities: ['horario', 'atividade'],
+                        activities: 'atividades',
                         icon: Icons.work_rounded,
                       ),
                       ActionsWidget(
                         name: 'Registrar Eventualidade',
-                        activities: ['horario', 'eventualidade'],
+                        activities: 'eventualidades',
                         icon: Icons.today_rounded,
                       ),
                       ActionsWidget(
                         name: 'Registrar Atividade Física',
-                        activities: ['horario', 'exercício'],
+                        activities: 'exercicios',
                         icon: Icons.fitness_center_rounded,
                       ),
                     ],
@@ -373,7 +385,7 @@ class ActionsWidget extends StatelessWidget {
   }) : super(key: key);
 
   final String name;
-  final List activities;
+  final String activities;
   final IconData icon;
 
   @override
@@ -422,6 +434,7 @@ class ActionsWidget extends StatelessWidget {
                           name,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
+                            fontSize: 18,
                             color: GlobalInfo.contrastColor,
                             fontWeight: FontWeight.bold,
                           ),

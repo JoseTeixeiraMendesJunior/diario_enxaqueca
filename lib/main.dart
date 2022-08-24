@@ -1,4 +1,5 @@
-import 'package:diario_enxaqueca/controllers/forms/humorController.dart';
+import 'package:diario_enxaqueca/controllers/forms/activities_controller.dart';
+import 'package:diario_enxaqueca/controllers/forms/humor_controller.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/home/index.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   /// Create the instance of Controller
   HumorController humorController = Get.put(HumorController());
+  ActivitiesController activitiesController = Get.put(ActivitiesController());
 
   @override
   Widget build(BuildContext context) {

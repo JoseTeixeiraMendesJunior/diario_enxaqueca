@@ -1,4 +1,4 @@
-import 'package:diario_enxaqueca/models/humorModel.dart';
+import 'package:diario_enxaqueca/models/humor_model.dart';
 import 'package:get/get.dart';
 
 class HumorController extends GetxController {
