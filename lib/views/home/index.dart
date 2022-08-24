@@ -59,7 +59,7 @@ class BoxOne extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 24, top: 32),
               child: GestureDetector(
-                onHorizontalDragEnd: (details) => print('oi'),
+                onHorizontalDragEnd: (details) => print(details),
                 child: Container(
                   height: 120,
                   decoration: const BoxDecoration(
@@ -310,22 +310,22 @@ class _BoxTwoState extends State<BoxTwo> {
                     children: const [
                       ActionsWidget(
                         name: 'Registrar Alimentação',
-                        activities: ['horario', 'alimentos'],
+                        activities: 'alimentos',
                         icon: Icons.restaurant_rounded,
                       ),
                       ActionsWidget(
                         name: 'Registrar Atividades',
-                        activities: ['horario', 'atividade'],
+                        activities: 'atividades',
                         icon: Icons.work_rounded,
                       ),
                       ActionsWidget(
                         name: 'Registrar Eventualidade',
-                        activities: ['horario', 'eventualidade'],
+                        activities: 'eventualidades',
                         icon: Icons.today_rounded,
                       ),
                       ActionsWidget(
                         name: 'Registrar Atividade Física',
-                        activities: ['horario', 'exercício'],
+                        activities: 'exercicios',
                         icon: Icons.fitness_center_rounded,
                       ),
                     ],
@@ -385,7 +385,7 @@ class ActionsWidget extends StatelessWidget {
   }) : super(key: key);
 
   final String name;
-  final List activities;
+  final String activities;
   final IconData icon;
 
   @override

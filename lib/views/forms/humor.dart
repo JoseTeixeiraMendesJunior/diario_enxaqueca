@@ -1,4 +1,4 @@
-import 'package:diario_enxaqueca/controllers/forms/humorController.dart';
+import 'package:diario_enxaqueca/controllers/forms/humor_controller.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
       backgroundColor: GlobalInfo.primaryColor,
       appBar: AppBar(title: const Text('Humor do dia')),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Center(
           child: Container(
             width: MediaQuery.of(context).size.width - 50,
