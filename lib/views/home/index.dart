@@ -1,4 +1,5 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
+import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/forms/activities.dart';
 import 'package:diario_enxaqueca/views/forms/exaqueca.dart';
 import 'package:diario_enxaqueca/views/forms/humor.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../layouts/widgets/custom_page_route.dart';
 import '../../layouts/widgets/globalwidget.dart';
@@ -141,7 +144,7 @@ class BoxOne extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  'arreste para mais informações',
+                                  'arraste para mais informações',
                                   style: TextStyle(
                                       fontSize: 15,
                                       color: GlobalInfo.contrastColor),
@@ -246,7 +249,7 @@ class _BoxTwoState extends State<BoxTwo> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 15),
                                   child: Text(
-                                    'Regsitrar Crise de Enxaqueca',
+                                    'Registrar Crise de Enxaqueca',
                                     style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.white,
@@ -282,7 +285,7 @@ class _BoxTwoState extends State<BoxTwo> {
                                     vertical: 15,
                                   ),
                                   child: Text(
-                                    'Regsitrar Humor do Dia',
+                                    'Registrar Humor do Dia',
                                     style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.white,
@@ -489,7 +492,7 @@ class BoxThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 170,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ListView(
@@ -498,12 +501,16 @@ class BoxThree extends StatelessWidget {
             MoreElements(
               title: 'Nossa comunidade no discord',
               image: 'assets/images/discord.png',
-              description: 'discord.gg/diren',
+              description:
+                  'Acesse nossa comunidade no Discord e interaja com outros usuários do Diário da Enxaqueca',
+              url: 'www.google.com',
             ),
             MoreElements(
               title: 'Nossa comunidade no Reddit',
               image: 'assets/images/reddit.png',
-              description: 'reddit.com/r/diren',
+              description:
+                  'Acesse nossa comunidade no Reddit e interaja com outros usuários do Diário da Enxaqueca',
+              url: 'www.youtube.com',
             )
           ],
         ),
@@ -517,62 +524,79 @@ class MoreElements extends StatelessWidget {
     required this.title,
     required this.image,
     required this.description,
+    required this.url,
     Key? key,
   }) : super(key: key);
 
   final String? title;
   final String? image;
   final String? description;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 150,
-        width: MediaQuery.of(context).size.width - 100,
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(color: Colors.black),
-                  children: [
-                    TextSpan(
-                        text: title,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ],
+      child: GestureDetector(
+        onTap: () async {
+          GlobalScaffold.instance.snackBarStatus(
+              'Acesso a Uri da comunidade', GlobalInfo.infoColor);
+          // if (await canLaunchUrl(Uri.parse(url))) {
+          //   await launchUrl(Uri.parse(url));
+          // } else {
+          //   GlobalScaffold.instance.snackBarStatus(
+          //     'Não foi possível acessar o link.',
+          //     GlobalInfo.infoColor,
+          //   );
+          // }
+        },
+        child: Container(
+          height: 150,
+          width: MediaQuery.of(context).size.width - 100,
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(color: GlobalInfo.contrastColor),
+                    children: [
+                      TextSpan(
+                          text: title,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Image.asset(image!),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RichText(
-                          text: TextSpan(
-                            style: TextStyle(color: Colors.black),
-                            children: [
-                              TextSpan(
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Image.asset(image!),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                  fontSize: 12,
+                                  color: GlobalInfo.contrastColor),
+                              children: [
+                                TextSpan(
                                   text: description,
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/layouts/widgets/globalwidget.dart';
+import 'package:diario_enxaqueca/views/home/change_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -64,7 +65,11 @@ class ProfileInfo extends StatelessWidget {
           ),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AlterarDados(),
+              )),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
