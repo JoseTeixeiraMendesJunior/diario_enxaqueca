@@ -1,5 +1,4 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
-import 'package:diario_enxaqueca/layouts/globalwidget.dart';
 import 'package:diario_enxaqueca/views/forms/activities.dart';
 import 'package:diario_enxaqueca/views/forms/exaqueca.dart';
 import 'package:diario_enxaqueca/views/forms/humor.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import '../../layouts/widgets/custom_page_route.dart';
+import '../../layouts/widgets/globalwidget.dart';
 import '../calendar/index.dart';
 
 class HomeView extends StatefulWidget {
@@ -190,10 +190,14 @@ class _BoxTwoState extends State<BoxTwo> {
             Padding(
               padding: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return CalendarView();
-                })),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CalendarView();
+                    },
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [

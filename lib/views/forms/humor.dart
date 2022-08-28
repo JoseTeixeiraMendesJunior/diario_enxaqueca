@@ -7,6 +7,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../calendar/index.dart';
+
 class HumorFormWidget extends StatefulWidget {
   const HumorFormWidget({Key? key}) : super(key: key);
 
@@ -43,15 +45,25 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Selecione como você se sente no dia ' +
-                          DateFormat('dd/MM/yyyy')
-                              .format(DateTime.now())
-                              .toString(),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: GlobalInfo.contrastColor,
-                          fontWeight: FontWeight.bold),
+                    child: InkWell(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CalendarView();
+                          },
+                        ),
+                      ),
+                      child: Text(
+                        'Selecione como você se sente no dia ' +
+                            DateFormat('dd/MM/yyyy')
+                                .format(DateTime.now())
+                                .toString(),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: GlobalInfo.contrastColor,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   const Padding(
