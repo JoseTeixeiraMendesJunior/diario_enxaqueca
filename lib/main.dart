@@ -1,9 +1,14 @@
+import 'package:diario_enxaqueca/controllers/forms/activities_controller.dart';
+import 'package:diario_enxaqueca/controllers/forms/humor_controller.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/calendar/index.dart';
 import 'package:diario_enxaqueca/views/home/index.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +23,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  /// Create the instance of Controller
+  HumorController humorController = Get.put(HumorController());
+  ActivitiesController activitiesController = Get.put(ActivitiesController());
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -96,8 +105,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         'Home': (_) => const HomeView(),
         // this line below is always the last line
-        '/': (_) => const CalendarView(),
-        // '/': (_) => const HomeView(),
+        // '/': (_) => const CalendarView(),
+        '/': (_) => const HomeView(),
       },
     );
   }

@@ -1,11 +1,14 @@
 import 'dart:core';
-
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
+import '../../controllers/forms/calendar_controller.dart';
+import '../../models/events_model.dart';
 
 class CalendarView extends StatefulWidget {
   const CalendarView({Key? key}) : super(key: key);
@@ -15,10 +18,42 @@ class CalendarView extends StatefulWidget {
 }
 
 class _CalendarViewState extends State<CalendarView> {
-  DateTime? _selectedDay;
+  final calendarController = Get.put(CalendarController());
+  DateTime? _selectedDay = DateTime.now();
   DateTime? _focusedDay = DateTime.now();
   final CalendarFormat _calendarFormat = CalendarFormat.month;
-  List<Text> eventList = [];
+  List<EventsModel> eventList = [
+    EventsModel(
+      descricao: 'Enxaqueca forte',
+      dia: '28/08/2022',
+      hour: '15:45',
+      titulo: 'Crise',
+    ),
+    EventsModel(
+      descricao: 'Enxaqueca forte',
+      dia: '28/08/2022',
+      hour: '15:45',
+      titulo: 'Crise',
+    ),
+    EventsModel(
+      descricao: 'Enxaqueca forte',
+      dia: '29/08/2022',
+      hour: '15:45',
+      titulo: 'Crise',
+    ),
+    EventsModel(
+      descricao: 'Enxaqueca forte',
+      dia: '28/08/2022',
+      hour: '15:45',
+      titulo: 'Crise',
+    ),
+    EventsModel(
+      descricao: 'Enxaqueca forte',
+      dia: '28/08/2022',
+      hour: '15:45',
+      titulo: 'Crise',
+    )
+  ];
   List<Text> eventList2 = [];
   @override
   Widget build(BuildContext context) {
@@ -32,10 +67,15 @@ class _CalendarViewState extends State<CalendarView> {
         centerTitle: true,
         title: SizedBox(
             child: RichText(
-          text: const TextSpan(children: [TextSpan(text: 'Calendário')]),
+          text: const TextSpan(children: [
+            TextSpan(
+                text: 'Calendário',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16))
+          ]),
         )),
       ),
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.6,
@@ -50,13 +90,12 @@ class _CalendarViewState extends State<CalendarView> {
                 shouldFillViewport: true,
                 // rowHeight: MediaQuery.of(context).size.height / 10,
                 eventLoader: (day) {
-                  if (day.day == DateTime.now().day) {
-                    eventList.add(Text('oi'));
-                    eventList.add(Text('oi'));
-                    eventList.add(Text('oi'));
-                    eventList.add(Text('oi'));
-                    return eventList;
-                  }
+                  eventList2.clear();
+                  eventList.forEach((element) {
+                    if (element.dia == DateFormat('dd/MM/yyyy').format(day)) {
+                      eventList2.add(Text(element.descricao!));
+                    }
+                  });
                   return eventList2;
                 },
                 selectedDayPredicate: (day) {
@@ -69,11 +108,6 @@ class _CalendarViewState extends State<CalendarView> {
                   });
                 },
                 calendarFormat: _calendarFormat,
-                // onFormatChanged: (format) {
-                //   setState(() {
-                //     _calendarFormat = format;
-                //   });
-                // },
                 locale: 'pt_BR',
                 calendarStyle: const CalendarStyle(
                   outsideDaysVisible: false,
@@ -86,28 +120,90 @@ class _CalendarViewState extends State<CalendarView> {
                 lastDay: DateTime(DateTime.now().year + 1, DateTime.now().month,
                     DateTime.now().day)),
           ),
-          Container(
-            height: 50,
-            decoration: const BoxDecoration(color: GlobalInfo.primaryColor),
-            child: const Text(
-              'Eventos',
-              style: TextStyle(color: Colors.white),
-            ),
+          Visibility(
+            visible: ['29/08/2022', '28/08/2022', '29/08/2022'].contains(
+                    DateFormat('dd/MM/yyyy')
+                        .format(_selectedDay ?? DateTime.now()))
+                ? true
+                : false,
+            child: Container(
+                height: 50,
+                decoration: const BoxDecoration(color: GlobalInfo.primaryColor),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Eventos',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
+                      color: GlobalInfo.whiteIce,
+                    ),
+                  ),
+                )),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: eventList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: GlobalInfo.black),
-                );
-              },
-              physics: const ScrollPhysics(),
-              shrinkWrap: false,
-              // children: getEventos(),
+          Visibility(
+            visible: ['29/08/2022', '28/08/2022', '29/08/2022'].contains(
+                    DateFormat('dd/MM/yyyy')
+                        .format(_selectedDay ?? DateTime.now()))
+                ? true
+                : false,
+            child: Expanded(
+              child: ListView.builder(
+                itemCount: eventList.length,
+                itemBuilder: (context, index) {
+                  EventsModel item = eventList[index];
+                  return Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: GlobalInfo.whiteIce),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            RichText(
+                                text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                    children: [
+                                  TextSpan(
+                                      text: item.titulo,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold))
+                                ])),
+                            RichText(
+                                text: TextSpan(
+                                    style: const TextStyle(color: Colors.black),
+                                    children: [
+                                  const TextSpan(
+                                      text: 'Data: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  TextSpan(text: item.dia)
+                                ])),
+                            RichText(
+                                text: TextSpan(
+                                    style: const TextStyle(color: Colors.black),
+                                    children: [
+                                  const TextSpan(
+                                      text: 'Descrição: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  TextSpan(text: item.descricao)
+                                ]))
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                physics: const ScrollPhysics(),
+                shrinkWrap: false,
+                // children: getEventos(),
+              ),
             ),
           )
         ],
