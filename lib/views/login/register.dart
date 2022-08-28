@@ -1,5 +1,5 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
-import 'package:diario_enxaqueca/layouts/globalwidget.dart';
+import 'package:diario_enxaqueca/layouts/widgets/globalwidget.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
