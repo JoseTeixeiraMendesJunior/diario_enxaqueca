@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
-import 'package:diario_enxaqueca/layouts/globalwidget.dart';
+import 'package:diario_enxaqueca/layouts/widgets/globalwidget.dart';
 import 'package:diario_enxaqueca/utils/global_dialogs.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/home/index.dart';

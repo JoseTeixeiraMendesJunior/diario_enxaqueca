@@ -41,6 +41,7 @@ dependencies:
   table_calendar: ^3.0.6
   animated_bottom_navigation_bar: ^1.0.1
   get: ^4.6.5
+  fl_chart: ^0.55.1
 
 dev_dependencies:
   flutter_test:
