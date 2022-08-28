@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 
 class CustomPageRoute extends PageRouteBuilder {
@@ -8,8 +6,8 @@ class CustomPageRoute extends PageRouteBuilder {
 
   CustomPageRoute({required this.child, required this.direction})
       : super(
-            transitionDuration: const Duration(seconds: 1),
-            reverseTransitionDuration: const Duration(seconds: 1),
+            transitionDuration: const Duration(milliseconds: 300),
+            reverseTransitionDuration: const Duration(milliseconds: 300),
             pageBuilder: (
               context,
               animation,
@@ -26,7 +24,7 @@ class CustomPageRoute extends PageRouteBuilder {
   ) =>
       SlideTransition(
         position: Tween<Offset>(
-          begin: const Offset(0, -1),
+          begin: getBeginOffset(),
           end: Offset.zero,
         ).animate(animation),
         child: child,

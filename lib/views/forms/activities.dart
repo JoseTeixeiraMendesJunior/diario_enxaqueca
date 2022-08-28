@@ -53,8 +53,11 @@ class _ActivitiesViewState extends State<ActivitiesView> {
         onPressed: () {
           animatedDialogPadrao(context, const FormNewActivitie());
         },
-        backgroundColor: GlobalInfo.secondaryColor,
-        child: const Icon(Icons.add_rounded),
+        backgroundColor: Colors.white,
+        child: const Icon(
+          Icons.add_rounded,
+          color: GlobalInfo.secondaryColor,
+        ),
       ),
     );
   }
