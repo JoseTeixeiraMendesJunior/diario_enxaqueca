@@ -86,8 +86,25 @@ class _CalendarViewState extends State<CalendarView> {
                 lastDay: DateTime(DateTime.now().year + 1, DateTime.now().month,
                     DateTime.now().day)),
           ),
+          Container(
+            height: 50,
+            decoration: const BoxDecoration(color: GlobalInfo.primaryColor),
+            child: const Text(
+              'Eventos',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
           Expanded(
-            child: ListView(
+            child: ListView.builder(
+              itemCount: eventList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: GlobalInfo.black),
+                );
+              },
               physics: const ScrollPhysics(),
               shrinkWrap: false,
               // children: getEventos(),
