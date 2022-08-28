@@ -482,6 +482,12 @@ class BoxThree extends StatelessWidget {
             MoreElements(
               title: 'Nossa comunidade no discord',
               image: 'assets/images/discord.png',
+              description: 'discord.gg/diren',
+            ),
+            MoreElements(
+              title: 'Nossa comunidade no Reddit',
+              image: 'assets/images/reddit.png',
+              description: 'reddit.com/r/diren',
             )
           ],
         ),
@@ -494,11 +500,13 @@ class MoreElements extends StatelessWidget {
   const MoreElements({
     required this.title,
     required this.image,
+    required this.description,
     Key? key,
   }) : super(key: key);
 
   final String? title;
   final String? image;
+  final String? description;
 
   @override
   Widget build(BuildContext context) {
@@ -523,20 +531,30 @@ class MoreElements extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Image.asset(image!),
-                  // RichText(
-                  //   text: TextSpan(
-                  //     style: TextStyle(color: Colors.black),
-                  //     children: [
-                  //       TextSpan(
-                  //           text: title,
-                  //           style: TextStyle(fontWeight: FontWeight.bold)),
-                  //     ],
-                  //   ),
-                  // ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Image.asset(image!),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black),
+                            children: [
+                              TextSpan(
+                                  text: description,
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
