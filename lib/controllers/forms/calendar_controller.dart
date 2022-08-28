@@ -18,7 +18,8 @@ class CalendarController extends GetxController {
 
   List getEvents(DateTime day) {
     var tempList = <EventsModel>[];
-    if (day.day == DateTime.now().day) {}
+
+    // listEvents.forEach((element) { })
     return listEvents;
   }
 }

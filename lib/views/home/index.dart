@@ -478,7 +478,12 @@ class BoxThree extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ListView(
           scrollDirection: Axis.horizontal,
-          children: const [MoreElements(), MoreElements(), MoreElements()],
+          children: const [
+            MoreElements(
+              title: 'Nossa comunidade no discord',
+              image: 'assets/images/discord.png',
+            )
+          ],
         ),
       ),
     );
@@ -487,8 +492,13 @@ class BoxThree extends StatelessWidget {
 
 class MoreElements extends StatelessWidget {
   const MoreElements({
+    required this.title,
+    required this.image,
     Key? key,
   }) : super(key: key);
+
+  final String? title;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -499,6 +509,38 @@ class MoreElements extends StatelessWidget {
         width: MediaQuery.of(context).size.width - 100,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(color: Colors.black),
+                  children: [
+                    TextSpan(
+                        text: title,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Image.asset(image!),
+                  // RichText(
+                  //   text: TextSpan(
+                  //     style: TextStyle(color: Colors.black),
+                  //     children: [
+                  //       TextSpan(
+                  //           text: title,
+                  //           style: TextStyle(fontWeight: FontWeight.bold)),
+                  //     ],
+                  //   ),
+                  // ),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
