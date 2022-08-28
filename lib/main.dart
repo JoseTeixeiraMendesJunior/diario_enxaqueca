@@ -2,9 +2,12 @@ import 'package:diario_enxaqueca/controllers/forms/activities_controller.dart';
 import 'package:diario_enxaqueca/controllers/forms/humor_controller.dart';
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
+import 'package:diario_enxaqueca/views/calendar/index.dart';
 import 'package:diario_enxaqueca/views/home/index.dart';
-import 'package:diario_enxaqueca/views/login/index.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:get/get.dart';
 
 void main() {
@@ -27,7 +30,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // supportedLocales: const [Locale('pt', 'BR')],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('pt', 'BR')],
       theme: ThemeData(
           fontFamily: 'RobotoCondensed',
           primaryColor: GlobalInfo.primaryColor,
@@ -97,7 +105,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         'Home': (_) => const HomeView(),
         // this line below is always the last line
-        '/': (_) => const LoginView(),
+        // '/': (_) => const CalendarView(),
+        '/': (_) => const HomeView(),
       },
     );
   }

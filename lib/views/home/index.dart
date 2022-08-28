@@ -1,6 +1,4 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
-import 'package:diario_enxaqueca/layouts/widgets/custom_page_route.dart';
-import 'package:diario_enxaqueca/layouts/widgets/globalwidget.dart';
 import 'package:diario_enxaqueca/views/forms/activities.dart';
 import 'package:diario_enxaqueca/views/forms/exaqueca.dart';
 import 'package:diario_enxaqueca/views/forms/humor.dart';
@@ -8,6 +6,11 @@ import 'package:diario_enxaqueca/views/home/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+
+import '../../layouts/widgets/custom_page_route.dart';
+import '../../layouts/widgets/globalwidget.dart';
+import '../calendar/index.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -187,7 +190,14 @@ class _BoxTwoState extends State<BoxTwo> {
             Padding(
               padding: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => print('abre calendário'),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CalendarView();
+                    },
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -484,7 +494,18 @@ class BoxThree extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ListView(
           scrollDirection: Axis.horizontal,
-          children: const [MoreElements(), MoreElements(), MoreElements()],
+          children: const [
+            MoreElements(
+              title: 'Nossa comunidade no discord',
+              image: 'assets/images/discord.png',
+              description: 'discord.gg/diren',
+            ),
+            MoreElements(
+              title: 'Nossa comunidade no Reddit',
+              image: 'assets/images/reddit.png',
+              description: 'reddit.com/r/diren',
+            )
+          ],
         ),
       ),
     );
@@ -493,8 +514,15 @@ class BoxThree extends StatelessWidget {
 
 class MoreElements extends StatelessWidget {
   const MoreElements({
+    required this.title,
+    required this.image,
+    required this.description,
     Key? key,
   }) : super(key: key);
+
+  final String? title;
+  final String? image;
+  final String? description;
 
   @override
   Widget build(BuildContext context) {
@@ -505,6 +533,48 @@ class MoreElements extends StatelessWidget {
         width: MediaQuery.of(context).size.width - 100,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(color: Colors.black),
+                  children: [
+                    TextSpan(
+                        text: title,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Image.asset(image!),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black),
+                            children: [
+                              TextSpan(
+                                  text: description,
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

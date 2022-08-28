@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:intl/intl.dart';
+
+import '../calendar/index.dart';
 
 class ExaquecaFormView extends StatefulWidget {
   const ExaquecaFormView({Key? key}) : super(key: key);
@@ -48,14 +51,27 @@ class _ExaquecaFormViewState extends State<ExaquecaFormView> {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Dia: xx/xx',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: GlobalInfo.contrastColor),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CalendarView();
+                          },
+                        ),
+                      ),
+                      child: Text(
+                        'Dia: ' +
+                            DateFormat('dd/MM/yyyy')
+                                .format(DateTime.now())
+                                .toString(),
+                        style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: GlobalInfo.contrastColor),
+                      ),
                     ),
                   ),
 
