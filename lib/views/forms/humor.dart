@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class HumorFormWidget extends StatefulWidget {
   const HumorFormWidget({Key? key}) : super(key: key);
@@ -43,7 +44,10 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Selecione como você se sente no dia $date',
+                      'Selecione como você se sente no dia ' +
+                          DateFormat('dd/MM/yyyy')
+                              .format(DateTime.now())
+                              .toString(),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: GlobalInfo.contrastColor,
