@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'globalinfo.dart';
+import '../globalinfo.dart';
 
 class LogoWidget extends StatelessWidget {
   const LogoWidget({

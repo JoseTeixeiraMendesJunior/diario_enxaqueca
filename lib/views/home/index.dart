@@ -1,8 +1,10 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
-import 'package:diario_enxaqueca/layouts/globalwidget.dart';
+import 'package:diario_enxaqueca/layouts/widgets/custom_page_route.dart';
+import 'package:diario_enxaqueca/layouts/widgets/globalwidget.dart';
 import 'package:diario_enxaqueca/views/forms/activities.dart';
 import 'package:diario_enxaqueca/views/forms/exaqueca.dart';
 import 'package:diario_enxaqueca/views/forms/humor.dart';
+import 'package:diario_enxaqueca/views/home/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -59,7 +61,16 @@ class BoxOne extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 24, top: 32),
               child: GestureDetector(
-                onHorizontalDragEnd: (details) => print(details),
+                onHorizontalDragEnd: (details) {
+                  if (details.primaryVelocity != null) {
+                    if (details.primaryVelocity! <= 0) {
+                      Navigator.of(context).push(CustomPageRoute(
+                        child: const ProfileView(),
+                        direction: AxisDirection.left,
+                      ));
+                    }
+                  }
+                },
                 child: Container(
                   height: 120,
                   decoration: const BoxDecoration(
