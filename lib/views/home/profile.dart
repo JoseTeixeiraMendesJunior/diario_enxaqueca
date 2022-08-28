@@ -51,21 +51,43 @@ class ProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        Text(
+      children: [
+        const Text(
           'Nome do Usuário',
           style: TextStyle(fontSize: 20, color: GlobalInfo.contrastColor),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             'email@email.com',
             style: TextStyle(fontSize: 14, color: GlobalInfo.contrastColor),
           ),
         ),
-        Padding(
+        InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Alterar dados',
+                style: TextStyle(color: Colors.grey, fontSize: 14),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(
+                  Icons.settings_rounded,
+                  color: Colors.grey,
+                  size: 14,
+                ),
+              )
+            ],
+          ),
+        ),
+        const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Divider(),
+          child: Divider(
+            color: Colors.grey,
+          ),
         ),
       ],
     );
@@ -268,7 +290,7 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.only(top: 30, bottom: 10),
       child: Container(
         padding: const EdgeInsets.all(5),
         height: 75,
