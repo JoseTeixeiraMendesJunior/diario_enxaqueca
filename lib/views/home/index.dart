@@ -498,12 +498,12 @@ class BoxThree extends StatelessWidget {
             MoreElements(
               title: 'Nossa comunidade no discord',
               image: 'assets/images/discord.png',
-              description: 'discord.gg/diren',
+              description: 'discord.gg/VbhaVFMw',
             ),
             MoreElements(
               title: 'Nossa comunidade no Reddit',
               image: 'assets/images/reddit.png',
-              description: 'reddit.com/r/diren',
+              description: 'reddit.com/r/diario_da_enxaqueca/',
             )
           ],
         ),
