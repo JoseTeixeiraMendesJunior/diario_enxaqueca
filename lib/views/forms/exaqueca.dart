@@ -58,15 +58,12 @@ class _ExaquecaFormViewState extends State<ExaquecaFormView> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return CalendarView();
+                            return const CalendarView();
                           },
                         ),
                       ),
                       child: Text(
-                        'Dia: ' +
-                            DateFormat('dd/MM/yyyy')
-                                .format(DateTime.now())
-                                .toString(),
+                        'Dia: ${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
                         style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -115,37 +112,49 @@ class _ExaquecaFormViewState extends State<ExaquecaFormView> {
 
                   ///duração
                   Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          hintText: 'Tempo de duração *',
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                  color: GlobalInfo.tertiaryColor, width: 3))),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: DropdownButtonFormField(
-                      iconEnabledColor: Colors.grey,
-                      value: selectItens,
-                      items: itens
-                          .map((e) => DropdownMenuItem<String>(
-                              value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (value) =>
-                          setState(() => selectItens = value.toString()),
-                      decoration: InputDecoration(
-                          hintText: 'Selecione *',
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              width: 3,
-                              color: GlobalInfo.tertiaryColor,
-                            ),
-                          )),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width:
+                              (MediaQuery.of(context).size.width - 100) * 0.6,
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                hintText: 'Duração *',
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: const BorderSide(
+                                        color: GlobalInfo.tertiaryColor,
+                                        width: 3))),
+                          ),
+                        ),
+                        SizedBox(
+                          width:
+                              (MediaQuery.of(context).size.width - 100) * 0.45,
+                          height: 60,
+                          child: DropdownButtonFormField(
+                            iconEnabledColor: Colors.grey,
+                            value: selectItens,
+                            items: itens
+                                .map((e) => DropdownMenuItem<String>(
+                                    value: e, child: Text(e)))
+                                .toList(),
+                            onChanged: (value) =>
+                                setState(() => selectItens = value.toString()),
+                            decoration: InputDecoration(
+                                hintText: 'Selecione*',
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: const BorderSide(
+                                    width: 3,
+                                    color: GlobalInfo.tertiaryColor,
+                                  ),
+                                )),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 

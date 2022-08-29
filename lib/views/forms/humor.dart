@@ -50,7 +50,7 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return CalendarView();
+                            return const CalendarView();
                           },
                         ),
                       ),

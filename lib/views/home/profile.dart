@@ -254,14 +254,14 @@ class _ProfileReportState extends State<ProfileReport> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ReportView(
-                                dataInicio: '01/08/2022',
-                                dataFim: '31/08/2022'),
-                          ));
-                      // animatedDialogPadrao(context, const FiltroRelatorio());
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const ReportView(
+                      //           dataInicio: '01/08/2022',
+                      //           dataFim: '31/08/2022'),
+                      // ));
+                      animatedDialogPadrao(context, const FiltroRelatorio());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -298,124 +298,157 @@ class _ProfileReportState extends State<ProfileReport> {
   }
 }
 
-// class FiltroRelatorio extends StatefulWidget {
-//   const FiltroRelatorio({
-//     Key? key,
-//   }) : super(key: key);
+class FiltroRelatorio extends StatefulWidget {
+  const FiltroRelatorio({
+    Key? key,
+  }) : super(key: key);
 
-//   @override
-//   State<FiltroRelatorio> createState() => _FiltroRelatorioState();
-// }
+  @override
+  State<FiltroRelatorio> createState() => _FiltroRelatorioState();
+}
 
-// class _FiltroRelatorioState extends State<FiltroRelatorio> {
-//   TimeOfDay? selectedTime;
+class _FiltroRelatorioState extends State<FiltroRelatorio> {
+  DateTime? selectedTime1;
+  DateTime? selectedTime2;
+  TextEditingController initTimeController = TextEditingController();
+  TextEditingController endTimeController = TextEditingController();
 
-//   TextEditingController initTimeController = TextEditingController();
-//   TextEditingController endTimeController = TextEditingController();
+  @override
+  void dispose() {
+    initTimeController.dispose();
+    endTimeController.dispose();
+    super.dispose();
+  }
 
-//   @override
-//   void dispose() {
-//     initTimeController.dispose();
-//     endTimeController.dispose();
-//     super.dispose();
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text(
+        'Selecione as datas de filtro do relatório',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: GlobalInfo.contrastColor, fontWeight: FontWeight.bold),
+      ),
+      content: SizedBox(
+        child: IntrinsicHeight(
+          child: Column(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: GestureDetector(
+                    onTap: () async {
+                      selectedTime1 = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2022),
+                        lastDate: DateTime(DateTime.now().year + 1),
+                        builder: (context, child) => Theme(
+                          data: ThemeData.from(
+                              colorScheme: const ColorScheme.light(
+                                  primary: GlobalInfo.primaryColor)),
+                          child: child!,
+                        ),
+                      );
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return AlertDialog(
-//       title: const Text(
-//         'Registro',
-//         style: TextStyle(
-//             color: GlobalInfo.contrastColor, fontWeight: FontWeight.bold),
-//       ),
-//       content: SizedBox(
-//         child: IntrinsicHeight(
-//           child: Column(
-//             children: [
-//               Padding(
-//                   padding: const EdgeInsets.all(8),
-//                   child: GestureDetector(
-//                     onTap: () async {
-//                       selectedTime = await showTimePicker(
-//                         context: context,
-//                         initialTime: TimeOfDay.now(),
-//                         builder: (BuildContext context, Widget? child) => Theme(
-//                           data: ThemeData().copyWith(
-//                               colorScheme: const ColorScheme.light(
-//                                   primary: GlobalInfo.primaryColor)),
-//                           child: child!,
-//                         ),
-//                       );
+                      if (selectedTime1 != null) {
+                        setState(() {
+                          initTimeController.text =
+                              '${selectedTime1!.day}/${selectedTime1!.month}/${selectedTime1!.year}';
+                        });
+                      }
+                    },
+                    child: AbsorbPointer(
+                      child: TextFormField(
+                        controller: initTimeController,
+                        decoration: InputDecoration(
+                            hintText: 'Início',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: const BorderSide(
+                                    color: GlobalInfo.tertiaryColor,
+                                    width: 3))),
+                      ),
+                    ),
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: GestureDetector(
+                    onTap: () async {
+                      selectedTime2 = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2022),
+                        lastDate: DateTime(DateTime.now().year + 1),
+                        builder: (context, child) => Theme(
+                          data: ThemeData.from(
+                              colorScheme: const ColorScheme.light(
+                                  primary: GlobalInfo.primaryColor)),
+                          child: child!,
+                        ),
+                      );
 
-//                       if (selectedTime != null) {
-//                         setState(() {
-//                           timeController.text =
-//                               '${selectedTime!.hour}:${selectedTime!.minute}';
-//                         });
-//                       }
-//                     },
-//                     child: AbsorbPointer(
-//                       child: TextFormField(
-//                         controller: timeController,
-//                         decoration: InputDecoration(
-//                             hintText: 'Horário de início *',
-//                             enabledBorder: OutlineInputBorder(
-//                                 borderRadius: BorderRadius.circular(12),
-//                                 borderSide: const BorderSide(
-//                                     color: GlobalInfo.tertiaryColor,
-//                                     width: 3))),
-//                       ),
-//                     ),
-//                   )),
-//               Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: TextFormField(
-//                   controller: itemController,
-//                   decoration: InputDecoration(
-//                       hintText: 'Informe o item',
-//                       enabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(12),
-//                         borderSide: const BorderSide(
-//                           width: 3,
-//                           color: GlobalInfo.tertiaryColor,
-//                         ),
-//                       )),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//       actions: [
-//         Padding(
-//           padding: const EdgeInsets.all(8),
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: [
-//               TextButton(
-//                 onPressed: () => Navigator.pop(context),
-//                 child: const Text(
-//                   'Fechar',
-//                   style: TextStyle(color: Colors.red),
-//                 ),
-//               ),
-//               TextButton(
-//                 onPressed: () {
-//                   controller.addItens(itemController.text, timeController.text);
-//                   Navigator.pop(context);
-//                 },
-//                 child: const Text(
-//                   'Salvar',
-//                   style: TextStyle(color: Colors.blue),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         )
-//       ],
-//     );
-//   }
-// }
+                      if (selectedTime2 != null) {
+                        setState(() {
+                          endTimeController.text =
+                              '${selectedTime2!.day}/${selectedTime2!.month}/${selectedTime2!.year}';
+                        });
+                      }
+                    },
+                    child: AbsorbPointer(
+                      child: TextFormField(
+                        controller: endTimeController,
+                        decoration: InputDecoration(
+                            hintText: 'Fim',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: const BorderSide(
+                                    color: GlobalInfo.tertiaryColor,
+                                    width: 3))),
+                      ),
+                    ),
+                  )),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  'Fechar',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  if (initTimeController.text.isNotEmpty &&
+                      endTimeController.text.isNotEmpty) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReportView(
+                              dataInicio: initTimeController.text.toString(),
+                              dataFim: endTimeController.text.toString()),
+                        ));
+                  }
+                },
+                child: const Text(
+                  'Filtrar',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({
