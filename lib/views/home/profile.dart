@@ -1,5 +1,8 @@
 import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/layouts/widgets/globalwidget.dart';
+import 'package:diario_enxaqueca/utils/global_dialogs.dart';
+import 'package:diario_enxaqueca/views/home/change_data.dart';
+import 'package:diario_enxaqueca/views/home/report.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -51,21 +54,47 @@ class ProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        Text(
+      children: [
+        const Text(
           'Nome do Usuário',
           style: TextStyle(fontSize: 20, color: GlobalInfo.contrastColor),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             'email@email.com',
             style: TextStyle(fontSize: 14, color: GlobalInfo.contrastColor),
           ),
         ),
-        Padding(
+        InkWell(
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AlterarDados(),
+              )),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Alterar dados',
+                style: TextStyle(color: Colors.grey, fontSize: 14),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(
+                  Icons.settings_rounded,
+                  color: Colors.grey,
+                  size: 14,
+                ),
+              )
+            ],
+          ),
+        ),
+        const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Divider(),
+          child: Divider(
+            color: Colors.grey,
+          ),
         ),
       ],
     );
@@ -224,7 +253,16 @@ class _ProfileReportState extends State<ProfileReport> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ReportView(
+                                dataInicio: '01/08/2022',
+                                dataFim: '31/08/2022'),
+                          ));
+                      // animatedDialogPadrao(context, const FiltroRelatorio());
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
@@ -260,6 +298,125 @@ class _ProfileReportState extends State<ProfileReport> {
   }
 }
 
+// class FiltroRelatorio extends StatefulWidget {
+//   const FiltroRelatorio({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   State<FiltroRelatorio> createState() => _FiltroRelatorioState();
+// }
+
+// class _FiltroRelatorioState extends State<FiltroRelatorio> {
+//   TimeOfDay? selectedTime;
+
+//   TextEditingController initTimeController = TextEditingController();
+//   TextEditingController endTimeController = TextEditingController();
+
+//   @override
+//   void dispose() {
+//     initTimeController.dispose();
+//     endTimeController.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AlertDialog(
+//       title: const Text(
+//         'Registro',
+//         style: TextStyle(
+//             color: GlobalInfo.contrastColor, fontWeight: FontWeight.bold),
+//       ),
+//       content: SizedBox(
+//         child: IntrinsicHeight(
+//           child: Column(
+//             children: [
+//               Padding(
+//                   padding: const EdgeInsets.all(8),
+//                   child: GestureDetector(
+//                     onTap: () async {
+//                       selectedTime = await showTimePicker(
+//                         context: context,
+//                         initialTime: TimeOfDay.now(),
+//                         builder: (BuildContext context, Widget? child) => Theme(
+//                           data: ThemeData().copyWith(
+//                               colorScheme: const ColorScheme.light(
+//                                   primary: GlobalInfo.primaryColor)),
+//                           child: child!,
+//                         ),
+//                       );
+
+//                       if (selectedTime != null) {
+//                         setState(() {
+//                           timeController.text =
+//                               '${selectedTime!.hour}:${selectedTime!.minute}';
+//                         });
+//                       }
+//                     },
+//                     child: AbsorbPointer(
+//                       child: TextFormField(
+//                         controller: timeController,
+//                         decoration: InputDecoration(
+//                             hintText: 'Horário de início *',
+//                             enabledBorder: OutlineInputBorder(
+//                                 borderRadius: BorderRadius.circular(12),
+//                                 borderSide: const BorderSide(
+//                                     color: GlobalInfo.tertiaryColor,
+//                                     width: 3))),
+//                       ),
+//                     ),
+//                   )),
+//               Padding(
+//                 padding: const EdgeInsets.all(8.0),
+//                 child: TextFormField(
+//                   controller: itemController,
+//                   decoration: InputDecoration(
+//                       hintText: 'Informe o item',
+//                       enabledBorder: OutlineInputBorder(
+//                         borderRadius: BorderRadius.circular(12),
+//                         borderSide: const BorderSide(
+//                           width: 3,
+//                           color: GlobalInfo.tertiaryColor,
+//                         ),
+//                       )),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//       actions: [
+//         Padding(
+//           padding: const EdgeInsets.all(8),
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               TextButton(
+//                 onPressed: () => Navigator.pop(context),
+//                 child: const Text(
+//                   'Fechar',
+//                   style: TextStyle(color: Colors.red),
+//                 ),
+//               ),
+//               TextButton(
+//                 onPressed: () {
+//                   controller.addItens(itemController.text, timeController.text);
+//                   Navigator.pop(context);
+//                 },
+//                 child: const Text(
+//                   'Salvar',
+//                   style: TextStyle(color: Colors.blue),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         )
+//       ],
+//     );
+//   }
+// }
+
 class ProfileImage extends StatelessWidget {
   const ProfileImage({
     Key? key,
@@ -268,7 +425,7 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.only(top: 30, bottom: 10),
       child: Container(
         padding: const EdgeInsets.all(5),
         height: 75,

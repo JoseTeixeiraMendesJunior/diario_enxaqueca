@@ -4,6 +4,7 @@ import 'package:diario_enxaqueca/layouts/globalinfo.dart';
 import 'package:diario_enxaqueca/utils/global_scafold.dart';
 import 'package:diario_enxaqueca/views/calendar/index.dart';
 import 'package:diario_enxaqueca/views/home/index.dart';
+import 'package:diario_enxaqueca/views/login/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -106,7 +107,7 @@ class _MyAppState extends State<MyApp> {
         'Home': (_) => const HomeView(),
         // this line below is always the last line
         // '/': (_) => const CalendarView(),
-        '/': (_) => const HomeView(),
+        '/': (_) => const LoginView(),
       },
     );
   }

@@ -55,12 +55,10 @@ class _HumorFormWidgetState extends State<HumorFormWidget> {
                         ),
                       ),
                       child: Text(
-                        'Selecione como você se sente no dia ' +
-                            DateFormat('dd/MM/yyyy')
-                                .format(DateTime.now())
-                                .toString(),
+                        'Selecione como você se sente no dia ${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
+                            fontSize: 16,
                             color: GlobalInfo.contrastColor,
                             fontWeight: FontWeight.bold),
                       ),
